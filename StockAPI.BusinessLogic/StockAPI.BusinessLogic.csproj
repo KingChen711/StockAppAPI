@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StockAPI.DataAccess\StockAPI.DataAccess.csproj" />
+    <ProjectReference Include="..\StockAPI.Models\StockAPI.Models.csproj" />
+  </ItemGroup>
+
+</Project>
