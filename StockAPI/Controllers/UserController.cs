@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StockAPI.BusinessLogic.Interfaces;
 using StockAPI.DTO.User;
+using StockAPI.Filters;
 
 namespace StockAPI.Controllers;
 
@@ -27,5 +28,25 @@ public class UserController : ControllerBase
         {
             return BadRequest(new { e.Message });
         }
+    }
+
+    [HttpPost("sign-in")]
+    public IActionResult Login([FromBody] LoginDto body)
+    {
+        try
+        {
+            return Ok(_userService.Login(body.UsernameOrEmail, body.Password));
+        }
+        catch (ArgumentException e)
+        {
+            return BadRequest(new { e.Message });
+        }
+    }
+
+    [HttpGet("who-am-i")]
+    [JwtAuthorize]
+    public IActionResult WhoAmI()
+    {
+        return Ok(HttpContext.Items["UserId"]);
     }
 }
