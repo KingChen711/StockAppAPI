@@ -11,9 +11,9 @@ public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
 
-    public UserController(IUserService userRepository)
+    public UserController(IUserService userService)
     {
-        _userService = userRepository;
+        _userService = userService;
     }
 
     [HttpPost("register")]
@@ -21,11 +21,11 @@ public class UserController : ControllerBase
     {
         try
         {
-            return Ok(body);
+            return Ok(_userService.Register(body.Username, body.Email, body.Password));
         }
         catch (ArgumentException e)
         {
-            return BadRequest(new { Message = e.Message });
+            return BadRequest(new { e.Message });
         }
     }
 }

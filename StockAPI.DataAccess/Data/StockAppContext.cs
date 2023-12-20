@@ -494,6 +494,7 @@ public partial class StockAppContext : DbContext
                 .HasColumnName("username");
         });
 
+
         modelBuilder.Entity<UserDevice>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__user_dev__3213E83F4E8AB796");

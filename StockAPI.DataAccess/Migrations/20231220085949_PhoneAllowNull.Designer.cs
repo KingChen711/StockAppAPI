@@ -12,8 +12,8 @@ using StockAPI.DataAccess.Data;
 namespace StockAPI.DataAccess.Migrations
 {
     [DbContext(typeof(StockAppContext))]
-    [Migration("20231219171616_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20231220085949_PhoneAllowNull")]
+    partial class PhoneAllowNull
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -695,7 +695,6 @@ namespace StockAPI.DataAccess.Migrations
                         .HasColumnName("hashed_password");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
                         .HasColumnName("phone");

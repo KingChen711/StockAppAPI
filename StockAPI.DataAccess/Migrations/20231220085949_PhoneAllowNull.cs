@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StockAPI.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class PhoneAllowNull : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -89,7 +89,7 @@ namespace StockAPI.DataAccess.Migrations
                     username = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     hashed_password = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     full_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     date_of_birth = table.Column<DateOnly>(type: "date", nullable: true),
                     country = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)

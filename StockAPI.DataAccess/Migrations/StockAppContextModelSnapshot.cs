@@ -692,7 +692,6 @@ namespace StockAPI.DataAccess.Migrations
                         .HasColumnName("hashed_password");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
                         .HasColumnName("phone");

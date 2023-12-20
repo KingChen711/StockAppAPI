@@ -25,7 +25,7 @@ namespace StockAPI.BusinessLogic.Services
             return _unitOfWork.UserRepository.FindOne(user => user.Email.Equals(email));
         }
 
-        public void Register(string username, string email, string password)
+        public User Register(string username, string email, string password)
         {
             var existingUserByUsername = GetUserByUsername(username);
 
@@ -34,7 +34,9 @@ namespace StockAPI.BusinessLogic.Services
                 throw new ArgumentException("This username is already used!");
             }
 
-            var existingUserByEmail = GetUserByEmail(email);
+            var emailLowerCase = email.ToLower();
+
+            var existingUserByEmail = GetUserByEmail(emailLowerCase);
 
             if (existingUserByEmail != null)
             {
@@ -43,7 +45,9 @@ namespace StockAPI.BusinessLogic.Services
 
             var hashedPassword = _passwordHashService.HashPassword(password);
 
-            _unitOfWork.UserRepository.Insert(new User() { Username = username, Email = email, HashedPassword = hashedPassword });
+            _unitOfWork.UserRepository.Insert(new User() { Username = username, Email = emailLowerCase, HashedPassword = hashedPassword });
+            _unitOfWork.Save();
+            return _unitOfWork.UserRepository.FindOne(user => user.Email.Equals(emailLowerCase))!;
         }
     }
 }
